@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Musician Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Album Rating</th>
+      <th scope="col">Instrument Type</th>
+      <th scope="col">Album Name</th>
+      <th scope="col">Release Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in data %}
+    <tr>
+      <th scope="row">{{d.id}}</th>
+      <td>{{d.artist.first_name}} {{d.artist.last_name}}</td>
+      <td>{{d.artist.email}}</td>
+      <td>{{d.rating}}</td>
+      <td>{{d.artist.instrument}}</td>
+      <td>{{d.title}}</td>
+      <td>{{d.release_date}}</td>
+      <td><a href="{% url 'edit' d.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'delete' d.id %}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

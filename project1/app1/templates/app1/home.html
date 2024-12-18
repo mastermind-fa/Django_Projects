@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="color: red;">Home Page App1</h2>
+    <h1>Author: {{author}}</h1>
+    <h1>Age: {{age}}</h1>
+    {% if age > 10 %}
+        <h1>Age is greater than 10</h1>
+    {% else %}
+        <h1>Age is less than 10</h1>
+    {% endif %}
+
+    {{lst}}
+    <ul>
+        {% for item in lst %}
+            <li>{{item}}</li>
+        {% endfor %}
+    </ul>
+    <h1> {{ birthday | date:"D d M Y"}} </h1>
+
+{% endblock %}
