@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="d-flex flex-wrap px-5 pt-3 align-items-center">
+
+  <div class="col-6">
+    <h1>Welcome to Car Shop</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus dolorum delectus necessitatibus temporibus
+      adipisci, harum enim unde, suscipit in ipsum provident hic minima molestias reiciendis nihil veniam aut doloribus,
+      ab quidem sit cum at nemo nulla autem! Dolor quaerat ea voluptatem ullam, consequuntur quisquam ut iste. Vitae
+      exercitationem ipsum blanditiis. Nihil rem in quo magni quam sapiente ad ipsa voluptatum saepe quos temporibus, at
+      iste? Eum saepe eos error ea recusandae, deserunt at quidem odio harum inventore. Necessitatibus eos sapiente
+      architecto optio aut esse, facilis, voluptatibus assumenda ut exercitationem nobis molestias, quisquam nam quia
+      odio ipsa? Voluptatem voluptas distinctio eaque.</p>
+  </div>
+  <div class="col-6">
+    <img src="{% static 'header.jpg' %}" style="width: 80%;" />
+  </div>
+</div>
+<br><br><br>
+
+<div class="d-flex flex-wrap p-4">
+  <div class="col-2 bg-white p-3">
+    <h5>All Brands</h5>
+    {% for b in brand %}
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="brand" id="{{b.id}}" />
+      <label class="form-check-label" for="{{b.id}}">
+
+        <a href="{% url 'brand_wise_post' b.slug %}" class="text-decoration-none text-dark">{{b.name}}</a>
+      </label>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="col-10 p-3">
+    <h4>{{data | length}} results found</h4>
+    <div class="container mt-4">
+      <div class="row">
+        {% for car in data %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.title }}"
+              style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ car.title }}</h5>
+              <p class="card-text">${{ car.price }}</p>
+              <a href="{% url 'car-detail' car.id %}" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
